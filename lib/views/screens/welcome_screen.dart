@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_getx/routes/routes.dart';
 import 'package:flutter_ecommerce_getx/utils/themes.dart';
-import 'package:flutter_ecommerce_getx/views/widgets/text_utils.dart';
+
+import 'package:flutter_ecommerce_getx/views/widgets/widgets.dart';
 import 'package:get/get.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -84,23 +85,11 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            primary: mainColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.0),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 40.0,
-                              vertical: 8.0,
-                            )),
+                      AuthButton(
+                        text: 'Get start'.toUpperCase(),
                         onPressed: () {
                           Get.offNamed(Routes.loginScreen);
                         },
-                        child: TextUtils(
-                          text: 'Get start',
-                          fontWeight: FontWeight.bold,
-                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -116,9 +105,9 @@ class WelcomeScreen extends StatelessWidget {
                             },
                             child: TextUtils(
                               text: "sign-up",
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                              fontSize: 18.0,
                               underline: TextDecoration.underline,
+                              fontWeight: FontWeight.bold,
                             ),
                           )
                         ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_getx/routes/routes.dart';
-import 'package:flutter_ecommerce_getx/views/screens/home_screen.dart';
-import 'package:flutter_ecommerce_getx/views/screens/welcome_screen.dart';
+
 import 'package:get/get.dart';
 
 void main() {

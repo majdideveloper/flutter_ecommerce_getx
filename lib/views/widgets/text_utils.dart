@@ -21,7 +21,7 @@ class TextUtils extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: GoogleFonts.lato(
+      style: GoogleFonts.openSans(
         textStyle: TextStyle(
           decoration: underline,
           color: color,
