@@ -7,6 +7,7 @@ class TextUtils extends StatelessWidget {
   FontWeight? fontWeight;
   Color? color;
   TextDecoration? underline;
+  TextAlign? textAlign;
 
   TextUtils({
     required this.text,
@@ -14,6 +15,7 @@ class TextUtils extends StatelessWidget {
     this.fontWeight,
     this.color = Colors.white,
     this.underline,
+    this.textAlign,
     Key? key,
   }) : super(key: key);
 
@@ -21,6 +23,7 @@ class TextUtils extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: textAlign,
       style: GoogleFonts.openSans(
         textStyle: TextStyle(
           decoration: underline,

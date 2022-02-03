@@ -25,7 +25,7 @@ class AuthButton extends StatelessWidget {
             horizontal: 60.0,
             vertical: 10.0,
           )),
-      onPressed: () {},
+      onPressed: onPressed,
       child: TextUtils(
         text: text,
         fontSize: fontSize,
