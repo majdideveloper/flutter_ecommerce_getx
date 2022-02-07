@@ -29,6 +29,10 @@ class AppRoutes {
       page: () => ForgetPasswordScreen(),
       binding: AuthBinding(),
     ),
+    GetPage(
+      name: Routes.mainScreen,
+      page: () => const MainScreen(),
+    ),
   ];
 }
 
@@ -37,4 +41,5 @@ class Routes {
   static const loginScreen = '/loginScreen';
   static const signUpScreen = '/signUpScreen';
   static const forgetPasswordScreen = '/forgetPasswordScreen';
+  static const mainScreen = '/mainScreen';
 }

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_getx/logic/controllers/auth_controller.dart';
 import 'package:flutter_ecommerce_getx/routes/routes.dart';
@@ -144,20 +145,22 @@ class SignUpScreen extends StatelessWidget {
                                   color: Get.isDarkMode
                                       ? darkGreyClr
                                       : Colors.white,
-                                  fontSize: 18.0,
+                                  fontSize: 12.0,
                                   fontWeight: FontWeight.normal,
                                 ),
                                 const SizedBox(
                                   width: 5.0,
                                 ),
-                                TextUtils(
-                                  text: 'Terms & conditions',
-                                  color: Get.isDarkMode
-                                      ? darkGreyClr
-                                      : Colors.white,
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.normal,
-                                  underline: TextDecoration.underline,
+                                SizedBox(
+                                  child: TextUtils(
+                                    text: 'Terms & conditions',
+                                    color: Get.isDarkMode
+                                        ? darkGreyClr
+                                        : Colors.white,
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.normal,
+                                    underline: TextDecoration.underline,
+                                  ),
                                 ),
                               ],
                             ),
@@ -166,11 +169,31 @@ class SignUpScreen extends StatelessWidget {
                         const SizedBox(
                           height: 30.0,
                         ),
-                        AuthButton(
-                          text: 'sign up'.toUpperCase(),
-                          onPressed: () {},
-                          fontSize: 20.0,
-                        ),
+                        GetBuilder<AuthController>(builder: (_) {
+                          return AuthButton(
+                            text: 'sign up'.toUpperCase(),
+                            onPressed: () {
+                              if (controller.isChekBox == false) {
+                                Get.snackbar(
+                                  'Check Box',
+                                  'Please, Accept terms & conditions ',
+                                  snackPosition: SnackPosition.TOP,
+                                  backgroundColor: Colors.orange,
+                                  colorText: Colors.white,
+                                );
+                              } else if (keyForm.currentState!.validate()) {
+                                String name = nameController.text.trim();
+                                String email = emailController.text.trim();
+                                String password = passwordController.text;
+                                controller.signUpUsingFirebase(
+                                    name: name,
+                                    email: email,
+                                    passWord: password);
+                              }
+                            },
+                            fontSize: 20.0,
+                          );
+                        })
                       ],
                     ),
                   ),

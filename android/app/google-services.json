@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "562986500083",
+    "project_id": "xiv-store-fdea5",
+    "storage_bucket": "xiv-store-fdea5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:562986500083:android:37be707ae1ea0c49a99c86",
+        "android_client_info": {
+          "package_name": "com.example.flutter_ecommerce_getx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "562986500083-06mu49gh09p939j069dfksbogkdj6qg1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnOMunaDW2aOLizS5pZ09mQEUoFkGw_cs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "562986500083-06mu49gh09p939j069dfksbogkdj6qg1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
