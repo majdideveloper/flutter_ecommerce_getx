@@ -1,18 +1,25 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_getx/models/user_facebook_model.dart';
 import 'package:flutter_ecommerce_getx/routes/routes.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
   bool isVisibilty = true;
-  var lista = <int>[];
 
   // save name of user in firebase
   String displayUserName = '';
+  var displayUserImage = '';
 
   bool isChekBox = false;
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  FaceBookModel? faceBookModel;
+
+  var googleSignIn = GoogleSignIn();
 
   void visibility() {
     isVisibilty = !isVisibilty;
@@ -105,10 +112,71 @@ class AuthController extends GetxController {
     }
   }
 
-  void googleSingUpApp() {}
-  void facebookSingUpApp() {}
+  void googleSingUpApp() async {
+    try {
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      displayUserName = googleUser!.displayName!;
+      displayUserImage = googleUser.photoUrl!;
+      update();
+      Get.offNamed(Routes.mainScreen);
+    } catch (error) {
+      Get.snackbar(
+        'Error!',
+        error.toString(),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.orange,
+        colorText: Colors.white,
+      );
+    }
+  }
 
-  void resetPassword() {}
+  void facebookSingUpApp() async {
+    final LoginResult loginResult = await FacebookAuth.instance.login();
+    if (loginResult.status == LoginStatus.success) {
+      final data = await FacebookAuth.instance.getUserData();
+      faceBookModel = FaceBookModel.fromJson(data);
+      update();
 
-  void signOutFromApp() {}
+      Get.offNamed(Routes.mainScreen);
+    } else {
+      print('================errorr====================');
+    }
+  }
+
+  void resetPassword(String email) async {
+    try {
+      await auth.sendPasswordResetEmail(
+        email: email,
+      );
+
+      update();
+      Get.back();
+    } on FirebaseAuthException catch (error) {
+      String title = error.code.replaceAll(RegExp('-'), ' ').capitalize!;
+      String message = '';
+      if (error.code == 'user-not-found') {
+        message = 'No user found for that email.';
+      }
+      Get.snackbar(
+        title,
+        message,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.orange,
+        colorText: Colors.white,
+      );
+    } catch (error) {
+      Get.snackbar(
+        'Error!',
+        error.toString(),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.orange,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  void signOutFromApp() async {
+    await FirebaseAuth.instance.signOut();
+    Get.offNamed(Routes.loginScreen);
+  }
 }

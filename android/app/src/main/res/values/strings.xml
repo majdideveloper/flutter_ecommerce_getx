@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">xiv store getx</string>
+    <string name="facebook_app_id">367237798162127</string>
+    <string name="fb_login_protocol_scheme">fb367237798162127</string>
+    <string name="facebook_client_token">41235fe1d41f70b97ebe75ae32e076fe</string>
+   
+
+ 
+</resources>

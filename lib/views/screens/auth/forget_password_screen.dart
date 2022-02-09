@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_getx/logic/controllers/auth_controller.dart';
 import 'package:flutter_ecommerce_getx/utils/my_string.dart';
 import 'package:flutter_ecommerce_getx/utils/themes.dart';
 import 'package:flutter_ecommerce_getx/views/widgets/widgets.dart';
@@ -6,6 +7,8 @@ import 'package:get/get.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   ForgetPasswordScreen({Key? key}) : super(key: key);
+
+  final controller = Get.find<AuthController>();
 
   final TextEditingController emailController = TextEditingController();
 
@@ -87,7 +90,15 @@ class ForgetPasswordScreen extends StatelessWidget {
                 const SizedBox(
                   height: 20.0,
                 ),
-                AuthButton(text: 'send'.toUpperCase(), onPressed: () {})
+                GetBuilder<AuthController>(builder: (_) {
+                  return AuthButton(
+                      text: 'send'.toUpperCase(),
+                      onPressed: () {
+                        if (keyForm.currentState!.validate()) {
+                          controller.resetPassword(emailController.text.trim());
+                        }
+                      });
+                })
               ],
             ),
           ),

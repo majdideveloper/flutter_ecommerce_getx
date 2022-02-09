@@ -32,6 +32,7 @@ class AppRoutes {
     GetPage(
       name: Routes.mainScreen,
       page: () => const MainScreen(),
+      binding: AuthBinding(),
     ),
   ];
 }

@@ -176,13 +176,27 @@ class LoginScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset(
-                            'assets/images/facebook.png',
-                          ),
+                          GetBuilder<AuthController>(builder: (_) {
+                            return InkWell(
+                              onTap: () {
+                                controller.facebookSingUpApp();
+                              },
+                              child: Image.asset(
+                                'assets/images/facebook.png',
+                              ),
+                            );
+                          }),
                           const SizedBox(
                             width: 15.0,
                           ),
-                          Image.asset('assets/images/google.png')
+                          GetBuilder<AuthController>(builder: (_) {
+                            return InkWell(
+                              onTap: () {
+                                controller.googleSingUpApp();
+                              },
+                              child: Image.asset('assets/images/google.png'),
+                            );
+                          })
                         ],
                       )
                     ],
