@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       title: 'ecommere shop',
       debugShowCheckedModeBanner: false,
       theme: ThemesApp.light,
-      initialRoute: AppRoutes.welcome,
+      initialRoute: AppRoutes.mainScreen,
       getPages: AppRoutes.routes,
     );
   }

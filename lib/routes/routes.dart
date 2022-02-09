@@ -1,4 +1,5 @@
 import 'package:flutter_ecommerce_getx/logic/bindings/auth_binding.dart';
+import 'package:flutter_ecommerce_getx/logic/bindings/main_binding.dart';
 
 import 'package:flutter_ecommerce_getx/views/screens/screens.dart';
 
@@ -8,6 +9,7 @@ class AppRoutes {
   //initialRoute:'/welcomeScreen' ,
   //  getPages: [],
   static const welcome = Routes.welcomeScreen;
+  static const mainScreen = Routes.mainScreen;
 
   static final routes = [
     GetPage(
@@ -31,8 +33,11 @@ class AppRoutes {
     ),
     GetPage(
       name: Routes.mainScreen,
-      page: () => const MainScreen(),
-      binding: AuthBinding(),
+      page: () => MainScreen(),
+      bindings: [
+        AuthBinding(),
+        MainBinding(),
+      ],
     ),
   ];
 }
