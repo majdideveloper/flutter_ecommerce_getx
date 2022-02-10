@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_getx/logic/controllers/theme_controller.dart';
+
+import 'package:get/get.dart';
 
 class SettingScreen extends StatelessWidget {
-  const SettingScreen({Key? key}) : super(key: key);
+  SettingScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
+    return Scaffold(
+      // this line is very important to change bertween themes
+      backgroundColor: context.theme.backgroundColor,
+      body: Center(
+        child: TextButton(
           child: Text(
-        'settings',
-        style: TextStyle(color: Colors.white),
-      )),
+            'Dark mode',
+            style: TextStyle(
+              color: Get.isDarkMode ? Colors.white : Colors.black,
+            ),
+          ),
+          onPressed: () {
+            ThemeController().changeTheme();
+          },
+        ),
+      ),
     );
   }
 }

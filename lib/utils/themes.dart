@@ -16,14 +16,44 @@ const Color languageSettings = Color(0xffCB256C);
 
 class ThemesApp {
   static final light = ThemeData(
+    appBarTheme: const AppBarTheme(
+      backgroundColor: mainColor,
+    ),
     primaryColor: mainColor,
     backgroundColor: Colors.white,
     brightness: Brightness.light,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+      selectedItemColor: mainColor,
+      unselectedItemColor: Colors.black,
+    ),
   );
 
   static final dark = ThemeData(
+    appBarTheme: const AppBarTheme(
+      backgroundColor: darkGreyClr,
+    ),
     primaryColor: darkGreyClr,
     backgroundColor: darkGreyClr,
     brightness: Brightness.dark,
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: darkGreyClr,
+      selectedItemColor: mainColor,
+      unselectedItemColor: Colors.white,
+    ),
   );
 }
+
+/* BottomNavigationBarItem(
+                    activeIcon: const Icon(
+                      Icons.settings,
+                      color: mainColor,
+                    ),
+                    icon: Icon(
+                      Icons.settings,
+                      color: controller.isDarkMode.value
+                          ? Colors.black
+                          : Colors.white,
+                    ),
+                    label: ''),
+                    */
