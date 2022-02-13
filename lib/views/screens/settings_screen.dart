@@ -19,9 +19,7 @@ class SettingScreen extends StatelessWidget {
               color: Get.isDarkMode ? Colors.white : Colors.black,
             ),
           ),
-          onPressed: () {
-            ThemeController().changeTheme();
-          },
+          onPressed: ThemeController().switchTheme,
         ),
       ),
     );

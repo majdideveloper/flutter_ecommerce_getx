@@ -51,6 +51,3 @@ app.*.map.json
 
 
 #about firebase and facebook log
-/android/app/google-services.json
-/android/app/src/main/res/values/strings.xml
-/ios/Runner/GoogleService-Info.plist

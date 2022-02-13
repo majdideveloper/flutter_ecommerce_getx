@@ -24,10 +24,10 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'ecommere shop',
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeController().themeChange,
+      themeMode: ThemeController().theme,
       theme: ThemesApp.light,
       darkTheme: ThemesApp.dark,
-      initialRoute: AppRoutes.mainScreen,
+      initialRoute: AppRoutes.welcome,
       getPages: AppRoutes.routes,
     );
   }

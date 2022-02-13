@@ -3,26 +3,21 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class ThemeController {
-  final GetStorage boxStorage = GetStorage();
-  String keyStorage = 'isDarkModes';
+  final _box = GetStorage();
+  final _key = 'isDarkModes';
 
-  saveThemeDataInBox(bool isDark) {
-    boxStorage.write(keyStorage, isDark);
-  }
+  /// Get isDarkMode info from local storage and return ThemeMode
+  ThemeMode get theme => _loadThemeFromBox() ? ThemeMode.dark : ThemeMode.light;
 
-  bool getThemeDataInBox() {
-    return boxStorage.read<bool>(keyStorage) ?? false;
-  }
+  /// Load isDArkMode from local storage and if it's empty, returns false (that means default theme is light)
+  bool _loadThemeFromBox() => _box.read(_key) ?? false;
 
-  ThemeMode get themeChange =>
-      getThemeDataInBox() ? ThemeMode.dark : ThemeMode.light;
+  /// Save isDarkMode to local storage
+  _saveThemeToBox(bool isDarkMode) => _box.write(_key, isDarkMode);
 
-  void changeTheme() {
-    Get.changeThemeMode(getThemeDataInBox() ? ThemeMode.dark : ThemeMode.light);
-    saveThemeDataInBox(getThemeDataInBox());
-
-    // Get.isDarkMode
-    //     ? Get.changeThemeMode(ThemeMode.light)
-    //     : Get.changeThemeMode(ThemeMode.dark);
+  /// Switch theme and save to local storage
+  switchTheme() {
+    Get.changeThemeMode(_loadThemeFromBox() ? ThemeMode.light : ThemeMode.dark);
+    _saveThemeToBox(!_loadThemeFromBox());
   }
 }

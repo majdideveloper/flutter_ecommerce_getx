@@ -25,9 +25,9 @@ class SignUpScreen extends StatelessWidget {
     SizeConfig().init(context);
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+        backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
         appBar: AppBar(
-          backgroundColor: Get.isDarkMode ? Colors.white : darkGreyClr,
+          backgroundColor: Get.isDarkMode ? darkGreyClr : Colors.white,
           elevation: 0.0,
         ),
         body: SingleChildScrollView(
@@ -61,7 +61,7 @@ class SignUpScreen extends StatelessWidget {
                               text: 'up'.toUpperCase(),
                               fontWeight: FontWeight.w700,
                               color:
-                                  Get.isDarkMode ? darkGreyClr : Colors.white,
+                                  Get.isDarkMode ? Colors.white : darkGreyClr,
                               fontSize: 28.0,
                             ),
                           ],
@@ -143,23 +143,25 @@ class SignUpScreen extends StatelessWidget {
                                 TextUtils(
                                   text: 'I accept',
                                   color: Get.isDarkMode
-                                      ? darkGreyClr
-                                      : Colors.white,
-                                  fontSize: 12.0,
+                                      ? Colors.white
+                                      : darkGreyClr,
+                                  fontSize: 16.0,
                                   fontWeight: FontWeight.normal,
                                 ),
                                 const SizedBox(
                                   width: 5.0,
                                 ),
                                 SizedBox(
-                                  child: TextUtils(
-                                    text: 'Terms & conditions',
-                                    color: Get.isDarkMode
-                                        ? darkGreyClr
-                                        : Colors.white,
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.normal,
-                                    underline: TextDecoration.underline,
+                                  child: FittedBox(
+                                    child: TextUtils(
+                                      text: 'Terms & conditions',
+                                      color: Get.isDarkMode
+                                          ? Colors.white
+                                          : darkGreyClr,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.normal,
+                                      underline: TextDecoration.underline,
+                                    ),
                                   ),
                                 ),
                               ],
