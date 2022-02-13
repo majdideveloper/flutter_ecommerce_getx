@@ -19,7 +19,7 @@ class ForgetPasswordScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Get.isDarkMode ? Colors.white : Colors.black,
+        backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
         centerTitle: true,
         title: TextUtils(
           text: 'forget PassWord'.toUpperCase(),
@@ -34,7 +34,7 @@ class ForgetPasswordScreen extends StatelessWidget {
           color: mainColor,
         ),
       ),
-      backgroundColor: Get.isDarkMode ? Colors.white : Colors.black,
+      backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
       body: Form(
         key: keyForm,
         child: SingleChildScrollView(
@@ -64,7 +64,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                   fontSize: 20.0,
                   text:
                       'If you want to recover your account, then please your email ID below...',
-                  color: Get.isDarkMode ? Colors.black : Colors.white,
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
                 ),
                 const SizedBox(
                   height: 20.0,

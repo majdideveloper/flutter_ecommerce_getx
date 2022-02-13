@@ -4,6 +4,7 @@ import 'package:flutter_ecommerce_getx/models/user_facebook_model.dart';
 import 'package:flutter_ecommerce_getx/routes/routes.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthController extends GetxController {
@@ -12,8 +13,12 @@ class AuthController extends GetxController {
   // save name of user in firebase
   String displayUserName = '';
   var displayUserImage = '';
+  // this line for getstorage to save user key
+  final authBox = GetStorage();
 
   bool isChekBox = false;
+
+  var isSignIn = false;
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
@@ -43,6 +48,9 @@ class AuthController extends GetxController {
         displayUserName = name;
         auth.currentUser!.updateDisplayName(displayUserName);
       });
+      isSignIn = true;
+      authBox.write('auth', isSignIn);
+
       update();
       Get.offNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (error) {
@@ -84,6 +92,8 @@ class AuthController extends GetxController {
           .then((value) {
         displayUserName = auth.currentUser!.displayName!;
       });
+      isSignIn = true;
+      authBox.write('auth', isSignIn);
       update();
       Get.offNamed(Routes.mainScreen);
     } on FirebaseAuthException catch (error) {
@@ -117,6 +127,8 @@ class AuthController extends GetxController {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       displayUserName = googleUser!.displayName!;
       displayUserImage = googleUser.photoUrl!;
+      isSignIn = true;
+      authBox.write('auth', isSignIn);
       update();
       Get.offNamed(Routes.mainScreen);
     } catch (error) {
@@ -135,6 +147,8 @@ class AuthController extends GetxController {
     if (loginResult.status == LoginStatus.success) {
       final data = await FacebookAuth.instance.getUserData();
       faceBookModel = FaceBookModel.fromJson(data);
+      isSignIn = true;
+      authBox.write('auth', isSignIn);
       update();
 
       Get.offNamed(Routes.mainScreen);
@@ -176,7 +190,25 @@ class AuthController extends GetxController {
   }
 
   void signOutFromApp() async {
-    await FirebaseAuth.instance.signOut();
-    Get.offNamed(Routes.loginScreen);
+    try {
+      await FirebaseAuth.instance.signOut();
+      await googleSignIn.signOut();
+      await FacebookAuth.instance.logOut();
+      displayUserImage = '';
+      displayUserName = '';
+      isSignIn = false;
+      authBox.remove('auth');
+      update();
+
+      Get.offNamed(Routes.welcomeScreen);
+    } catch (error) {
+      Get.snackbar(
+        'Error!',
+        error.toString(),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.orange,
+        colorText: Colors.white,
+      );
+    }
   }
 }

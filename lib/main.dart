@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_getx/logic/controllers/theme_controller.dart';
@@ -27,7 +28,10 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeController().theme,
       theme: ThemesApp.light,
       darkTheme: ThemesApp.dark,
-      initialRoute: AppRoutes.welcome,
+      initialRoute: FirebaseAuth.instance.currentUser != null ||
+              GetStorage().read('auth') == true
+          ? AppRoutes.mainScreen
+          : AppRoutes.welcome,
       getPages: AppRoutes.routes,
     );
   }

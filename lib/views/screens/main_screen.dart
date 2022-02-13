@@ -16,7 +16,9 @@ class MainScreen extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
+              leading: Container(),
               elevation: 0.0,
+              backgroundColor: mainColor,
               title: Text(
                 'xiv shop'.toUpperCase(),
               ),
