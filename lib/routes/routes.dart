@@ -1,5 +1,6 @@
 import 'package:flutter_ecommerce_getx/logic/bindings/auth_binding.dart';
 import 'package:flutter_ecommerce_getx/logic/bindings/main_binding.dart';
+import 'package:flutter_ecommerce_getx/logic/bindings/product_binding.dart';
 
 import 'package:flutter_ecommerce_getx/views/screens/screens.dart';
 
@@ -37,6 +38,7 @@ class AppRoutes {
       bindings: [
         AuthBinding(),
         MainBinding(),
+        ProductBinding(),
       ],
     ),
   ];
