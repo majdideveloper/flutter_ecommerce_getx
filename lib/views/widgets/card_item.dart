@@ -29,9 +29,11 @@ class CardItem extends StatelessWidget {
             itemCount: controller.productList.length,
             itemBuilder: (context, index) {
               return _buildCardItem(
-                image: controller.productList[index].image,
-                price: controller.productList[index].price,
-                rate: controller.productList[index].rating.rate,
+                product: controller.productList[index],
+                index: index,
+                // image: controller.productList[index].image,
+                // price: controller.productList[index].price,
+                // rate: controller.productList[index].rating.rate,
               );
             },
           ),
@@ -41,9 +43,11 @@ class CardItem extends StatelessWidget {
   }
 
   Widget _buildCardItem({
-    required String image,
-    required double price,
-    required double rate,
+    required ProductModel product,
+    required int index,
+    // required String image,
+    // required double price,
+    // required double rate,
   }) {
     return Padding(
       padding: const EdgeInsets.all(
@@ -63,22 +67,39 @@ class CardItem extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.favorite_outline_outlined,
+            Obx(
+              () => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      if (controller.isFavourites(product.id)) {
+                        controller.removeFavoriteProduct(product.id);
+                      } else {
+                        controller.addFavoriteProduct(product.id);
+                      }
+
+                      // if (product.id == controller.productList[index].id) {
+                      //   controller.removeFavoriteProduct(product.id);
+                      // }
+                    },
+                    icon: controller.isFavourites(product.id)
+                        ? const Icon(
+                            Icons.favorite,
+                            color: mainColor,
+                          )
+                        : const Icon(
+                            Icons.favorite_outline_outlined,
+                          ),
                   ),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.add,
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.add,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             Container(
               width: double.infinity,
@@ -88,7 +109,7 @@ class CardItem extends StatelessWidget {
                 color: Colors.white,
               ),
               child: Image.network(
-                image,
+                product.image,
                 fit: BoxFit.fitHeight,
               ),
             ),
@@ -98,7 +119,7 @@ class CardItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '\$ $price',
+                    '\$ ${product.price}',
                     style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
@@ -120,7 +141,7 @@ class CardItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           TextUtils(
-                            text: '$rate',
+                            text: '${product.rating.rate}',
                             fontSize: 13,
                           ),
                           const Icon(
