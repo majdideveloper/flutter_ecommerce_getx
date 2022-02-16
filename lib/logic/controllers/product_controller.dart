@@ -12,11 +12,13 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
+    // ? this code about add list in getStotage
     List? reisterProductFavoirteList =
         storage.read<List>('productFavoirteList');
 
-    if (productFavoirteList != null) {
-      productFavoirteList = reisterProductFavoirteList!
+    if (reisterProductFavoirteList != null) {
+      productFavoirteList = reisterProductFavoirteList
           .map((e) => ProductModel.fromJson(e))
           .toList()
           .obs;

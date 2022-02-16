@@ -41,6 +41,14 @@ class AppRoutes {
         ProductBinding(),
       ],
     ),
+    GetPage(
+      name: Routes.cartScreen,
+      page: () => CartScreen(),
+      bindings: [
+        MainBinding(),
+        ProductBinding(),
+      ],
+    ),
   ];
 }
 
@@ -50,4 +58,5 @@ class Routes {
   static const signUpScreen = '/signUpScreen';
   static const forgetPasswordScreen = '/forgetPasswordScreen';
   static const mainScreen = '/mainScreen';
+  static const cartScreen = '/cartScreen';
 }

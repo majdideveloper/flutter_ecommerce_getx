@@ -31,7 +31,7 @@ class ThemesApp {
 
   static final dark = ThemeData(
     appBarTheme: const AppBarTheme(
-      backgroundColor: darkGreyClr,
+      backgroundColor: mainColor,
     ),
     primaryColor: darkGreyClr,
     backgroundColor: darkGreyClr,

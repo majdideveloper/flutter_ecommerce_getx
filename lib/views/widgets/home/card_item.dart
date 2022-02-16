@@ -90,12 +90,14 @@ class CardItem extends StatelessWidget {
                           )
                         : const Icon(
                             Icons.favorite_outline_outlined,
+                            color: Colors.black,
                           ),
                   ),
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(
                       Icons.add,
+                      color: Colors.black,
                     ),
                   ),
                 ],
