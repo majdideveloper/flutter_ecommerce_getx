@@ -5,10 +5,14 @@ import 'package:flutter_ecommerce_getx/utils/themes.dart';
 import 'package:flutter_ecommerce_getx/views/widgets/widgets.dart';
 import 'package:get/get.dart';
 
+import '../../../logic/controllers/cart_controller.dart';
+
 class CardItem extends StatelessWidget {
   CardItem({Key? key}) : super(key: key);
 
   final controller = Get.find<ProductController>();
+
+  final cartController = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -94,9 +98,11 @@ class CardItem extends StatelessWidget {
                           ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      cartController.addProductToCart(product);
+                    },
                     icon: const Icon(
-                      Icons.add,
+                      Icons.shopping_cart,
                       color: Colors.black,
                     ),
                   ),

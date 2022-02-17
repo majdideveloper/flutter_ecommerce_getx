@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_getx/logic/controllers/cart_controller.dart';
+import 'package:flutter_ecommerce_getx/models/product_model.dart';
 import 'package:flutter_ecommerce_getx/utils/themes.dart';
 import 'package:get/get.dart';
 
 class CartProductCard extends StatelessWidget {
-  const CartProductCard({Key? key}) : super(key: key);
+  final ProductModel productModel;
+  final int index;
+  CartProductCard({Key? key, required this.productModel, required this.index})
+      : super(key: key);
+
+  final controller = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +31,8 @@ class CartProductCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              image: const DecorationImage(
-                  image: NetworkImage(
-                    'https://images.unsplash.com/photo-1640622658799-54e6039d189b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-                  ),
-                  fit: BoxFit.cover),
+              image: DecorationImage(
+                  image: NetworkImage(productModel.image), fit: BoxFit.cover),
             ),
           ),
           const SizedBox(
@@ -41,8 +45,8 @@ class CartProductCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'title',
-                  style: TextStyle(
+                  productModel.title,
+                  style: const TextStyle(
                     overflow: TextOverflow.ellipsis,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -53,8 +57,8 @@ class CartProductCard extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  'title',
-                  style: TextStyle(
+                  controller.productSubTotal[index].toStringAsFixed(2),
+                  style: const TextStyle(
                     overflow: TextOverflow.ellipsis,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -70,12 +74,16 @@ class CartProductCard extends StatelessWidget {
               Row(
                 children: [
                   IconButton(
-                    onPressed: () {},
-                    icon: Icon(Icons.add_circle),
+                    onPressed: () {
+                      controller.addProductToCart(productModel);
+                    },
+                    icon: const Icon(Icons.add_circle),
                   ),
-                  const Text(
-                    '1',
-                    style: TextStyle(
+                  Text(
+                    controller.productsMapCart.values
+                        .elementAt(index)
+                        .toString(),
+                    style: const TextStyle(
                       overflow: TextOverflow.ellipsis,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -83,13 +91,17 @@ class CartProductCard extends StatelessWidget {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      controller.removeProductsFromCart(productModel);
+                    },
                     icon: const Icon(Icons.remove_circle),
                   ),
                 ],
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  controller.removeOneProduct(productModel);
+                },
                 icon: const Icon(
                   Icons.delete,
                 ),

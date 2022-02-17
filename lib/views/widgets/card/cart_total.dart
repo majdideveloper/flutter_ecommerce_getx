@@ -4,7 +4,8 @@ import 'package:flutter_ecommerce_getx/views/widgets/text_utils.dart';
 import 'package:get/get.dart';
 
 class CartTotal extends StatelessWidget {
-  const CartTotal({Key? key}) : super(key: key);
+  final double total;
+  const CartTotal({Key? key, this.total = 0}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +23,14 @@ class CartTotal extends StatelessWidget {
                 fontWeight: FontWeight.bold,
                 color: Get.isDarkMode ? Colors.white : Colors.black,
               ),
-              TextUtils(
-                text: '\$ 600',
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Get.isDarkMode ? Colors.white : Colors.black,
+              Text(
+                '\$ $total',
+                style: TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Get.isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             ],
           ),
@@ -37,7 +41,7 @@ class CartTotal extends StatelessWidget {
             child: AuthButton(
               text: 'Check Out',
               onPressed: () {},
-              fontSize: 22,
+              fontSize: 20,
             ),
           ),
         ],
