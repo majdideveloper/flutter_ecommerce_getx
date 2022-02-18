@@ -8,3 +8,4 @@ export 'home/card_item.dart';
 export 'card/empty_card.dart';
 export 'card/cart_product_card.dart';
 export 'card/cart_total.dart';
+export 'product_details/image_sliders.dart';
