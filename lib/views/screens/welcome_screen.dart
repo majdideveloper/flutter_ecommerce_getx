@@ -86,6 +86,7 @@ class WelcomeScreen extends StatelessWidget {
                   Column(
                     children: [
                       AuthButton(
+                        horizontalPadding: 50,
                         text: 'Get start'.toUpperCase(),
                         onPressed: () {
                           Get.offNamed(Routes.loginScreen);

@@ -40,7 +40,7 @@ class SignUpScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(
                     left: 25.0,
                     right: 25.0,
-                    top: 40.0,
+                    top: 20.0,
                   ),
                   child: Form(
                     key: keyForm,
@@ -173,6 +173,7 @@ class SignUpScreen extends StatelessWidget {
                         ),
                         GetBuilder<AuthController>(builder: (_) {
                           return AuthButton(
+                            horizontalPadding: 50,
                             text: 'sign up'.toUpperCase(),
                             onPressed: () {
                               if (controller.isChekBox == false) {

@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(
                   left: 25.0,
                   right: 25.0,
-                  top: 40.0,
+                  top: 20.0,
                 ),
                 child: Form(
                   key: keyForm,
@@ -155,6 +155,7 @@ class LoginScreen extends StatelessWidget {
                       ),
                       GetBuilder<AuthController>(builder: (_) {
                         return AuthButton(
+                          horizontalPadding: 50,
                           text: 'log in'.toUpperCase(),
                           onPressed: () {
                             if (keyForm.currentState!.validate()) {

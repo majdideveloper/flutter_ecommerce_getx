@@ -92,6 +92,7 @@ class ForgetPasswordScreen extends StatelessWidget {
                 ),
                 GetBuilder<AuthController>(builder: (_) {
                   return AuthButton(
+                      horizontalPadding: 50,
                       text: 'send'.toUpperCase(),
                       onPressed: () {
                         if (keyForm.currentState!.validate()) {

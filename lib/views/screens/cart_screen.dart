@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_getx/logic/controllers/cart_controller.dart';
+import 'package:flutter_ecommerce_getx/utils/config.dart';
 import 'package:get/get.dart';
 
 import '../../routes/routes.dart';
@@ -54,12 +55,12 @@ class CartScreen extends StatelessWidget {
           ),
           body: Obx(
             () => controller.productsMapCart.isEmpty
-                ? EmptyCard()
+                ? const EmptyCard()
                 : SingleChildScrollView(
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 600,
+                          height: SizeConfig.screenHeight / 1.3,
                           child: ListView.separated(
                               itemBuilder: ((context, index) {
                                 return CartProductCard(
@@ -75,14 +76,11 @@ class CartScreen extends StatelessWidget {
                               }),
                               itemCount: controller.productsMapCart.length),
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 30),
-                          child: CartTotal(
-                            textButton: 'Check Out',
-                            text: 'Total',
-                            total: double.parse(controller.total),
-                            onPressedButton: () {},
-                          ),
+                        CartTotal(
+                          textButton: 'Check Out',
+                          text: 'Total',
+                          total: double.parse(controller.total),
+                          onPressedButton: () {},
                         ),
                       ],
                     ),

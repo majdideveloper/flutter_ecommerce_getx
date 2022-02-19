@@ -26,7 +26,7 @@ class CardItem extends StatelessWidget {
         return Expanded(
           child: GridView.builder(
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              childAspectRatio: 0.8,
+              childAspectRatio: 0.6,
               mainAxisSpacing: 9.0,
               crossAxisSpacing: 6.0,
               maxCrossAxisExtent: 200,
@@ -122,7 +122,7 @@ class CardItem extends StatelessWidget {
               ),
               Container(
                 width: double.infinity,
-                height: 150,
+                height: 200,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.white,

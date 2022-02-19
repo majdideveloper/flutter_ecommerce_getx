@@ -4,10 +4,12 @@ import 'package:flutter_ecommerce_getx/views/widgets/widgets.dart';
 
 class AuthButton extends StatelessWidget {
   final String text;
+  double horizontalPadding;
   double? fontSize;
   void Function()? onPressed;
   AuthButton({
     Key? key,
+    this.horizontalPadding = 10,
     required this.text,
     required this.onPressed,
     this.fontSize = 35.0,
@@ -21,8 +23,8 @@ class AuthButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 60.0,
+          padding: EdgeInsets.symmetric(
+            horizontal: horizontalPadding,
             vertical: 10.0,
           )),
       onPressed: onPressed,
