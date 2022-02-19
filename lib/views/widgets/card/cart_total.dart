@@ -5,7 +5,16 @@ import 'package:get/get.dart';
 
 class CartTotal extends StatelessWidget {
   final double total;
-  const CartTotal({Key? key, this.total = 0}) : super(key: key);
+  final String text;
+  final String textButton;
+  void Function()? onPressedButton;
+  CartTotal(
+      {Key? key,
+      this.total = 0,
+      required this.text,
+      required this.textButton,
+      this.onPressedButton})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +27,7 @@ class CartTotal extends StatelessWidget {
           Column(
             children: [
               TextUtils(
-                text: 'Total',
+                text: text,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Get.isDarkMode ? Colors.white : Colors.black,
@@ -39,8 +48,8 @@ class CartTotal extends StatelessWidget {
           ),
           Expanded(
             child: AuthButton(
-              text: 'Check Out',
-              onPressed: () {},
+              text: textButton,
+              onPressed: onPressedButton,
               fontSize: 20,
             ),
           ),

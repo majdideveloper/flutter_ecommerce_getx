@@ -78,7 +78,10 @@ class CartScreen extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(bottom: 30),
                           child: CartTotal(
+                            textButton: 'Check Out',
+                            text: 'Total',
                             total: double.parse(controller.total),
+                            onPressedButton: () {},
                           ),
                         ),
                       ],

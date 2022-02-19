@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_getx/logic/controllers/cart_controller.dart';
 import 'package:flutter_ecommerce_getx/models/product_model.dart';
 import 'package:get/get.dart';
 
@@ -6,8 +7,10 @@ import '../widgets/widgets.dart';
 
 class ProductsDetailsScreen extends StatelessWidget {
   final ProductModel productModel;
-  const ProductsDetailsScreen({Key? key, required this.productModel})
+  ProductsDetailsScreen({Key? key, required this.productModel})
       : super(key: key);
+
+  final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +24,17 @@ class ProductsDetailsScreen extends StatelessWidget {
               ImageSliders(
                 urlImage: productModel.image,
               ),
-              // ClothesInfo(),
-              // SizeList(),
-              // AddCart(),
+              ClothesInfo(
+                productModel: productModel,
+              ),
+              SizeList(),
+              CartTotal(
+                  textButton: 'Add To Cart',
+                  text: 'Price',
+                  total: productModel.price,
+                  onPressedButton: () {
+                    controller.addProductToCart(productModel);
+                  }),
             ],
           ),
         ),
