@@ -12,3 +12,4 @@ export 'product_details/image_sliders.dart';
 export 'product_details/clothes_info.dart';
 export 'product_details/color_picker.dart';
 export 'product_details/size_list.dart';
+export 'category/widget_category.dart';

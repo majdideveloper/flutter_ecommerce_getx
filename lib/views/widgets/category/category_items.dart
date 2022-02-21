@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommerce_getx/logic/controllers/product_controller.dart';
-import 'package:flutter_ecommerce_getx/models/product_model.dart';
 import 'package:flutter_ecommerce_getx/utils/themes.dart';
-import 'package:flutter_ecommerce_getx/views/screens/products_details_screen.dart';
 import 'package:flutter_ecommerce_getx/views/widgets/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/cart_controller.dart';
+import '../../../logic/controllers/product_controller.dart';
+import '../../../models/product_model.dart';
+import '../../screens/products_details_screen.dart';
 
-class CardItem extends StatelessWidget {
-  CardItem({Key? key}) : super(key: key);
+class CategoryItems extends StatelessWidget {
+  CategoryItems({Key? key}) : super(key: key);
 
   final controller = Get.find<ProductController>();
 
@@ -17,88 +17,38 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (controller.isLoading.value) {
-        return const CircularProgressIndicator(
-          color: mainColor,
-        );
-      } else {
-        return Expanded(
-          child: controller.searchList.isEmpty &&
-                  controller.searchController.text.isNotEmpty
-              ? Center(
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.search_off,
-                          size: 200,
-                          color: Get.isDarkMode ? Colors.white : Colors.black,
-                        ),
-                        TextUtils(
-                          text: 'not resulat found ',
-                          color: Get.isDarkMode ? Colors.white : Colors.black,
-                        )
-                      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('XIV Shop'),
+        centerTitle: true,
+      ),
+      body: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            childAspectRatio: 0.6,
+            mainAxisSpacing: 9.0,
+            crossAxisSpacing: 6.0,
+            maxCrossAxisExtent: 200,
+          ),
+          itemCount: controller.productList.length,
+          itemBuilder: (context, index) {
+            return _buildCardItem(
+                product: controller.productList[index],
+                index: index,
+                onTap: () {
+                  Get.to(
+                    () => ProductsDetailsScreen(
+                      productModel: controller.productList[index],
                     ),
-                  ),
-                )
-              : GridView.builder(
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    childAspectRatio: 0.6,
-                    mainAxisSpacing: 9.0,
-                    crossAxisSpacing: 6.0,
-                    maxCrossAxisExtent: 200,
-                  ),
-                  itemCount: controller.searchList.isEmpty
-                      ? controller.productList.length
-                      : controller.searchList.length,
-                  itemBuilder: (context, index) {
-                    if (controller.searchList.isEmpty) {
-                      return _buildCardItem(
-                          product: controller.productList[index],
-                          index: index,
-                          onTap: () {
-                            Get.to(
-                              () => ProductsDetailsScreen(
-                                productModel: controller.productList[index],
-                              ),
-                            );
-                          }
-                          // image: controller.productList[index].image,
-                          // price: controller.productList[index].price,
-                          // rate: controller.productList[index].rating.rate,
-                          );
-                    } else {
-                      return _buildCardItem(
-                          product: controller.searchList[index],
-                          index: index,
-                          onTap: () {
-                            Get.to(
-                              () => ProductsDetailsScreen(
-                                productModel: controller.searchList[index],
-                              ),
-                            );
-                          }
-                          // image: controller.productList[index].image,
-                          // price: controller.productList[index].price,
-                          // rate: controller.productList[index].rating.rate,
-                          );
-                    }
-                  },
-                ),
-        );
-      }
-    });
+                  );
+                });
+          }),
+    );
   }
 
   Widget _buildCardItem({
     required ProductModel product,
     required int index,
     required Function() onTap,
-    // required String image,
-    // required double price,
-    // required double rate,
   }) {
     return Padding(
       padding: const EdgeInsets.all(
@@ -131,10 +81,6 @@ class CardItem extends StatelessWidget {
                         } else {
                           controller.addFavoriteProduct(product.id);
                         }
-
-                        // if (product.id == controller.productList[index].id) {
-                        //   controller.removeFavoriteProduct(product.id);
-                        // }
                       },
                       icon: controller.isFavourites(product.id)
                           ? const Icon(
