@@ -5,13 +5,14 @@ import 'package:flutter_ecommerce_getx/views/widgets/category/category_items.dar
 import 'package:get/get.dart';
 
 class WidgetCategory extends StatelessWidget {
-  WidgetCategory({Key? key}) : super(key: key);
+  WidgetCategory({
+    Key? key,
+  }) : super(key: key);
 
   final controller = Get.put(CategoryController());
 
   @override
   Widget build(BuildContext context) {
-    controller.onInit();
     return Obx(() {
       if (controller.isLoading.value) {
         return Center(
@@ -25,7 +26,11 @@ class WidgetCategory extends StatelessWidget {
             itemBuilder: ((context, index) {
               return InkWell(
                 onTap: () {
-                  Get.to(() => CategoryItems());
+                  controller.getProductfromCategory(
+                      controller.categoryNameList[index]);
+                  Get.to(() => CategoryItems(
+                        index: index,
+                      ));
                 },
                 child: Container(
                   child: Padding(
@@ -52,7 +57,7 @@ class WidgetCategory extends StatelessWidget {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                        'https://images.unsplash.com/photo-1645390747975-fb637273ca5e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+                        controller.categoryImageList[index],
                       ),
                     ),
                   ),

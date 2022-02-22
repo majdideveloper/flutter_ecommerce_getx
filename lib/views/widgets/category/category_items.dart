@@ -4,45 +4,59 @@ import 'package:flutter_ecommerce_getx/views/widgets/widgets.dart';
 import 'package:get/get.dart';
 
 import '../../../logic/controllers/cart_controller.dart';
+import '../../../logic/controllers/category_controller.dart';
 import '../../../logic/controllers/product_controller.dart';
 import '../../../models/product_model.dart';
 import '../../screens/products_details_screen.dart';
 
 class CategoryItems extends StatelessWidget {
-  CategoryItems({Key? key}) : super(key: key);
+  int index;
+  CategoryItems({Key? key, required this.index}) : super(key: key);
 
   final controller = Get.find<ProductController>();
 
   final cartController = Get.find<CartController>();
 
+  final categoryController = Get.find<CategoryController>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('XIV Shop'),
-        centerTitle: true,
-      ),
-      body: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            childAspectRatio: 0.6,
-            mainAxisSpacing: 9.0,
-            crossAxisSpacing: 6.0,
-            maxCrossAxisExtent: 200,
-          ),
-          itemCount: controller.productList.length,
-          itemBuilder: (context, index) {
-            return _buildCardItem(
-                product: controller.productList[index],
-                index: index,
-                onTap: () {
-                  Get.to(
-                    () => ProductsDetailsScreen(
-                      productModel: controller.productList[index],
-                    ),
-                  );
+        appBar: AppBar(
+          title: Text(categoryController.categoryNameList[index]),
+          centerTitle: true,
+        ),
+        body: Obx(() {
+          if (categoryController.isLoadingProductFromCategory.value) {
+            return const Center(
+              child: CircularProgressIndicator(
+                color: mainColor,
+              ),
+            );
+          } else {
+            return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                  childAspectRatio: 0.6,
+                  mainAxisSpacing: 9.0,
+                  crossAxisSpacing: 6.0,
+                  maxCrossAxisExtent: 200,
+                ),
+                itemCount: categoryController.produitFromCategory.length,
+                itemBuilder: (context, index) {
+                  return _buildCardItem(
+                      product: categoryController.produitFromCategory[index],
+                      index: index,
+                      onTap: () {
+                        Get.to(
+                          () => ProductsDetailsScreen(
+                            productModel:
+                                categoryController.produitFromCategory[index],
+                          ),
+                        );
+                      });
                 });
-          }),
-    );
+          }
+        }));
   }
 
   Widget _buildCardItem({
