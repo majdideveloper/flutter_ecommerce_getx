@@ -14,3 +14,4 @@ export 'product_details/color_picker.dart';
 export 'product_details/size_list.dart';
 export 'category/widget_category.dart';
 export 'settings/dark_mode_widget.dart';
+export 'settings/profile_widget.dart';

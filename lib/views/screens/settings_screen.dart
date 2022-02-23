@@ -20,7 +20,7 @@ class SettingScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(24),
         children: [
-          // ProfileImage(),
+          ProfileWidget(),
           const SizedBox(
             height: 10,
           ),
@@ -78,7 +78,6 @@ class SettingScreen extends StatelessWidget {
                 icon: Icons.logout,
                 backgroundIcon: logOutSettings),
           ),
-
           const SizedBox(
             height: 30,
           ),

@@ -6,7 +6,7 @@ class IconWidget extends StatelessWidget {
   final String text;
   final IconData icon;
   final Color backgroundIcon;
-  const IconWidget(
+  IconWidget(
       {Key? key,
       required this.text,
       required this.icon,

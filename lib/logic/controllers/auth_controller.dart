@@ -11,7 +11,7 @@ class AuthController extends GetxController {
   bool isVisibilty = true;
 
   // save name of user in firebase
-  String displayUserName = '';
+  var displayUserName = ''.obs;
   var displayUserImage = '';
   // this line for getstorage to save user key
   final authBox = GetStorage();
@@ -45,8 +45,8 @@ class AuthController extends GetxController {
       await auth
           .createUserWithEmailAndPassword(email: email, password: passWord)
           .then((value) {
-        displayUserName = name;
-        auth.currentUser!.updateDisplayName(displayUserName);
+        displayUserName.value = name;
+        auth.currentUser!.updateDisplayName(displayUserName.value);
       });
       isSignIn = true;
       authBox.write('auth', isSignIn);
@@ -90,7 +90,7 @@ class AuthController extends GetxController {
         password: password,
       )
           .then((value) {
-        displayUserName = auth.currentUser!.displayName!;
+        displayUserName.value = auth.currentUser!.displayName!;
       });
       isSignIn = true;
       authBox.write('auth', isSignIn);
@@ -125,7 +125,7 @@ class AuthController extends GetxController {
   void googleSingUpApp() async {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      displayUserName = googleUser!.displayName!;
+      displayUserName.value = googleUser!.displayName!;
       displayUserImage = googleUser.photoUrl!;
       isSignIn = true;
       authBox.write('auth', isSignIn);
@@ -195,7 +195,7 @@ class AuthController extends GetxController {
       await googleSignIn.signOut();
       await FacebookAuth.instance.logOut();
       displayUserImage = '';
-      displayUserName = '';
+      displayUserName.value = '';
       isSignIn = false;
       authBox.remove('auth');
       update();
