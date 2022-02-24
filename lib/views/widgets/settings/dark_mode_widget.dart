@@ -18,7 +18,7 @@ class DarkModeWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         IconWidget(
-          text: 'Dark Mode',
+          text: 'Dark Mode'.tr,
           icon: Icons.dark_mode,
           backgroundIcon: darkSettings,
         ),

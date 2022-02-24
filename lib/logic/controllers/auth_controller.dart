@@ -12,19 +12,35 @@ class AuthController extends GetxController {
 
   // save name of user in firebase
   var displayUserName = ''.obs;
-  var displayUserImage = '';
+  var displayUserImage = ''.obs;
+  var displayUserEmail = ''.obs;
   // this line for getstorage to save user key
   final authBox = GetStorage();
+  var isSignIn = false;
 
   bool isChekBox = false;
 
-  var isSignIn = false;
+  //
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
   FaceBookModel? faceBookModel;
 
   var googleSignIn = GoogleSignIn();
+
+  //
+  User? get userProfile => auth.currentUser;
+
+  @override
+  void onInit() {
+    displayUserName.value =
+        (userProfile != null ? userProfile!.displayName : '')!;
+    displayUserEmail.value = (userProfile != null ? userProfile!.email : '')!;
+    displayUserImage.value =
+        (userProfile != null ? userProfile!.photoURL : '')!;
+
+    super.onInit();
+  }
 
   void visibility() {
     isVisibilty = !isVisibilty;
@@ -126,7 +142,18 @@ class AuthController extends GetxController {
     try {
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
       displayUserName.value = googleUser!.displayName!;
-      displayUserImage = googleUser.photoUrl!;
+      displayUserImage.value = googleUser.photoUrl!;
+      displayUserEmail.value = googleUser.email;
+
+      // this code about take token from google authentication
+      GoogleSignInAuthentication googleSignInAuthentication =
+          await googleUser.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        idToken: googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken,
+      );
+      await auth.signInWithCredential(credential);
+
       isSignIn = true;
       authBox.write('auth', isSignIn);
       update();
@@ -194,8 +221,9 @@ class AuthController extends GetxController {
       await FirebaseAuth.instance.signOut();
       await googleSignIn.signOut();
       await FacebookAuth.instance.logOut();
-      displayUserImage = '';
+      displayUserImage.value = '';
       displayUserName.value = '';
+      displayUserEmail.value = '';
       isSignIn = false;
       authBox.remove('auth');
       update();

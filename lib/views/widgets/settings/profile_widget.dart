@@ -18,13 +18,13 @@ class ProfileWidget extends StatelessWidget {
             Container(
               height: 100,
               width: 100,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    'https://images.unsplash.com/photo-1640622842924-fb0017b9d786?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=872&q=80',
+                    authController.displayUserImage.value,
                   ),
                 ),
               ),
@@ -32,21 +32,26 @@ class ProfileWidget extends StatelessWidget {
             const SizedBox(
               width: 15,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextUtils(
-                  text: authController.displayUserImage,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
-                ),
-                TextUtils(
-                  text: 'majdiaribi@outlook.com',
-                  fontSize: 20,
-                  color: Get.isDarkMode ? Colors.white : Colors.black,
-                )
-              ],
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextUtils(
+                    text: authController.displayUserName.value,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Get.isDarkMode ? Colors.white : Colors.black,
+                  ),
+                  Text(
+                    authController.displayUserEmail.value,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Get.isDarkMode ? Colors.white : Colors.black,
+                    ),
+                  )
+                ],
+              ),
             ),
           ],
         )

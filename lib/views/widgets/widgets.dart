@@ -15,3 +15,4 @@ export 'product_details/size_list.dart';
 export 'category/widget_category.dart';
 export 'settings/dark_mode_widget.dart';
 export 'settings/profile_widget.dart';
+export 'settings/language_widget.dart';

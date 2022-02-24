@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_getx/logic/controllers/auth_controller.dart';
-import 'package:flutter_ecommerce_getx/logic/controllers/theme_controller.dart';
+
 import 'package:flutter_ecommerce_getx/utils/themes.dart';
 import 'package:flutter_ecommerce_getx/views/widgets/settings/icon_widget.dart';
 import 'package:flutter_ecommerce_getx/views/widgets/widgets.dart';
@@ -24,7 +24,7 @@ class SettingScreen extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Divider(
+          const Divider(
             color: mainColor,
             thickness: 2,
           ),
@@ -32,7 +32,7 @@ class SettingScreen extends StatelessWidget {
             height: 20,
           ),
           TextUtils(
-            text: 'General'.toUpperCase(),
+            text: 'General'.toUpperCase().tr,
             color: mainColor,
             fontWeight: FontWeight.bold,
           ),
@@ -43,7 +43,7 @@ class SettingScreen extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          DarkModeWidget(),
+          LanguageWidget(),
           const SizedBox(
             height: 30,
           ),
@@ -74,7 +74,7 @@ class SettingScreen extends StatelessWidget {
                   });
             },
             child: IconWidget(
-                text: 'Log Out',
+                text: 'Log Out'.tr,
                 icon: Icons.logout,
                 backgroundIcon: logOutSettings),
           ),
