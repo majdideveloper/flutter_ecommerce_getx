@@ -24,6 +24,7 @@ class TextUtils extends StatelessWidget {
     return Text(
       text,
       textAlign: textAlign,
+      overflow: TextOverflow.ellipsis,
       style: GoogleFonts.openSans(
         textStyle: TextStyle(
           decoration: underline,

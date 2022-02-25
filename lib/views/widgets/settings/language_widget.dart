@@ -16,13 +16,15 @@ class LanguageWidget extends StatelessWidget {
       builder: (_) => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconWidget(
-              text: 'Language'.tr,
-              icon: Icons.language,
-              backgroundIcon: languageSettings),
+          Expanded(
+            child: IconWidget(
+                text: 'Language'.tr,
+                icon: Icons.language,
+                backgroundIcon: languageSettings),
+          ),
           Container(
-            width: 120,
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+            width: 150,
+            padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 2),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
@@ -41,6 +43,7 @@ class LanguageWidget extends StatelessWidget {
                   DropdownMenuItem(
                     child: Text(
                       english,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -51,6 +54,7 @@ class LanguageWidget extends StatelessWidget {
                   DropdownMenuItem(
                     child: Text(
                       french,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
@@ -61,6 +65,7 @@ class LanguageWidget extends StatelessWidget {
                   DropdownMenuItem(
                     child: Text(
                       arabic,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,

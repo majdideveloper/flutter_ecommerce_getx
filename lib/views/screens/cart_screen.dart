@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_getx/logic/controllers/cart_controller.dart';
+import 'package:flutter_ecommerce_getx/logic/controllers/payment_contoller.dart';
 import 'package:flutter_ecommerce_getx/utils/config.dart';
 import 'package:get/get.dart';
 
@@ -11,6 +12,7 @@ class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
 
   final controller = Get.find<CartController>();
+  final payementController = Get.put(PaymentController());
 
   @override
   Widget build(BuildContext context) {
@@ -80,7 +82,9 @@ class CartScreen extends StatelessWidget {
                           textButton: 'Check Out',
                           text: 'Total',
                           total: double.parse(controller.total),
-                          onPressedButton: () {},
+                          onPressedButton: () {
+                            Get.toNamed(Routes.paymentScreen);
+                          },
                         ),
                       ],
                     ),

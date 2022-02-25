@@ -16,3 +16,5 @@ export 'category/widget_category.dart';
 export 'settings/dark_mode_widget.dart';
 export 'settings/profile_widget.dart';
 export 'settings/language_widget.dart';
+export 'payment/delivery_container_widget.dart';
+export 'payment/payment_method_widget.dart';
