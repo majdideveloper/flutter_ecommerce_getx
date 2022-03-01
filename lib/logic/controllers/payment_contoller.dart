@@ -59,9 +59,7 @@ class PaymentController extends GetxController {
     return await Geolocator.getCurrentPosition();
   }
 
-  var latitude = ''.obs;
-  var longitude = ' '.obs;
-  var address = ''.obs;
+  var address = 'Your Address'.obs;
 
   Future<void> updatePosition() async {
     Position position = await _determinePosition();
@@ -70,6 +68,10 @@ class PaymentController extends GetxController {
 
     Placemark place = placemarks[0];
 
-    address.value = '${place.country}';
+    address.value = '${place.street}';
   }
+
+  //await GeocodingPlatform.instance
+        // .placemarkFromCoordinates(position.latitude, position.longitude,
+        //     localeIdentifier: "en");
 }

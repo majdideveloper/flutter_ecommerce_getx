@@ -23,7 +23,7 @@ class DeliveryContainerWidget extends StatelessWidget {
               title: 'XIV Shop',
               name: authController.displayUserName.value,
               phone: authController.displayUserEmail.value,
-              adresse: controller.address.value,
+              adresse: 'Tunisia Tunis',
               onChanged: (value) {
                 controller.onChangeItemRadio(1);
               }),
@@ -37,9 +37,9 @@ class DeliveryContainerWidget extends StatelessWidget {
             },
             color: controller.changeColors.value ? Colors.white : Colors.grey,
             value: 2,
-            title: 'ali',
-            name: 'ali',
-            phone: '32322423',
+            title: 'Delivery',
+            name: authController.displayUserName.value,
+            phone: authController.displayUserEmail.value,
             adresse: controller.address.value,
           ),
         ],
@@ -57,7 +57,7 @@ class DeliveryContainerWidget extends StatelessWidget {
     required Function(Object?)? onChanged,
   }) {
     return Container(
-      height: 120,
+      height: 150,
       width: double.infinity,
       decoration: BoxDecoration(
         color: Colors.grey.withOpacity(0.5),
