@@ -33,12 +33,14 @@ readmore: ^2.1.0\
 geolocator: ^8.0.1\
 geocoding: ^2.0.1
 # Screen
+<img src="https://user-images.githubusercontent.com/95164900/157616482-799e5193-cdcf-49ec-ba41-15cddda11365.png" width="400" height="790">
+
 ## dark mode 
 ## light mode 
 <table>
         <tr>
-            <td><img src="https://user-images.githubusercontent.com/95164900/148401564-0d324253-ec85-4ef4-b2e5-75df084cecca.png" width="400" height="790"></td>
-            <td><img src="https://user-images.githubusercontent.com/95164900/148401691-e91664cb-3c94-4c54-abf6-605f79a6756d.png" width="400" height="790"></td>
+            <td><img src="https://user-images.githubusercontent.com/95164900/157616725-27c29376-36e1-47ee-8246-e90dfa6e7758.png" width="400" height="790"></td>
+            <td><img src="https://user-images.githubusercontent.com/95164900/157616799-1065403e-c488-4284-be66-8d730082f41d.png" width="400" height="790"></td>
         </tr>
 </table>
 <table>
